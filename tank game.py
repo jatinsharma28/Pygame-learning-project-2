@@ -1,12 +1,13 @@
 import pygame
 import time
 import random
+import pandas
 
 pygame.init()
 
 pygame.mixer.music.load("Can You Dig It.wav")#####################
-display_width = 800
-display_height = 600
+display_width = 900
+display_height = 700
 
 gameDisplay = pygame.display.set_mode((display_width,display_height))
 
@@ -33,11 +34,11 @@ light_green = (0,255,0)
 
 clock = pygame.time.Clock()
  
-tankWidth = 40
+tankWidth = 30
 tankHeight = 20
 
-turretWidth = 5
-wheelWidth = 5
+turretWidth = 10
+wheelWidth = 10
 
 ground_height = 35
 
@@ -552,7 +553,7 @@ def game_over():
 
         pygame.display.update()
 
-        clock.tick(15)
+        clock.tick(18)
 
 def you_win():
 
@@ -588,7 +589,7 @@ def health_bars(player_health, enemy_health):
         player_health_color = red
 
     if enemy_health > 75:
-        enemy_health_color = green
+        enemy_health_color = red
     elif enemy_health > 50:
         enemy_health_color = yellow
     else:
@@ -692,7 +693,7 @@ def gameLoop(level1):
                             health_bars(player_health1,enemy_health2)
                             gun = tank(mainTankX,mainTankY,currentTurPos)
                             enemy_gun = enemy_tank(enemyTankX, enemyTankY, 8)
-                            fire_power += power_change
+                            fire_power += power_change+1
 
                             power(fire_power)
 
@@ -708,7 +709,7 @@ def gameLoop(level1):
                 elif event.key == pygame.K_a:######################################################
                     power_change = -1
                 elif event.key == pygame.K_d:######################################################
-                    power_change = 1
+                    power_change = 2
 
             elif event.type == pygame.KEYUP:
                 if event.key == pygame.K_LEFT or event.key == pygame.K_RIGHT:
